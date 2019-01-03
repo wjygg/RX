@@ -1,5 +1,6 @@
 package com.sicheng.ydjw.rx;
 
+import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
