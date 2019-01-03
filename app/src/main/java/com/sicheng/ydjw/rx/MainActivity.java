@@ -1,19 +1,7 @@
 package com.sicheng.ydjw.rx;
 
-import android.graphics.Bitmap;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-
-import java.util.concurrent.TimeUnit;
-
-import rx.Observable;
-import rx.Observable.OnSubscribe;
-import rx.Subscriber;
-import rx.functions.Action1;
-import rx.functions.Func1;
-import rx.functions.Func2;
-import rx.schedulers.Schedulers;
+import android.support.v7.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -232,7 +220,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });*/
 
-       //skip  跳过前面两个 skipLast 跳过 后两个
+        //skip  跳过前面两个 skipLast 跳过 后两个
        /*Observable.just(1,2,3,4).skip(2).subscribe(new Subscriber<Integer>() {
            @Override
            public void onCompleted() {
@@ -253,7 +241,7 @@ public class MainActivity extends AppCompatActivity {
            }
        });*/
 
-       //组合操作符
+      /* //组合操作符
         Observable<Integer> observable=Observable.just(1,2,3);
         Observable<Integer> observable1=Observable.just(4,5,6,7);
         //zip合并两个数据 一对对
@@ -278,6 +266,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.e(TAG,"onNext:"+integer);
             }
         });
+    }*/
     }
 }
 
