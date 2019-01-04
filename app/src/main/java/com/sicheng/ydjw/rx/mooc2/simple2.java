@@ -8,9 +8,11 @@ import java.util.List;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.ObservableSource;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
 import io.reactivex.functions.Predicate;
 
 public class simple2 {
@@ -77,12 +79,61 @@ public class simple2 {
         });
 
         //distinct:过滤掉重复的数据项，过滤规则为：只允许还没有发射过的数据项通过
-
         Observable.just(1,2,3,4,4,5).distinct().subscribe(new Consumer<Integer>() {
             @Override
             public void accept(Integer integer) throws Exception {
-                System.out.println(integer+"");
+                System.out.print(integer+"");
             }
         });
+
+        //转换型操作符
+        //map
+        Observable.just("helloword").map(new Function<String, Integer>() {
+            @Override
+            public Integer apply(String s) throws Exception {
+                return 1;
+            }
+        }).subscribe(new Consumer<Integer>() {
+            @Override
+            public void accept(Integer integer) throws Exception {
+
+                System.out.print(integer);
+            }
+        });
+        //flatmap 转换多个对象
+        Observable.just(new Integer[]{1,2,3},new Integer[]{4,5}).flatMap(new Function<Integer[], Observable<Integer>>() {
+            @Override
+            public Observable<Integer> apply(Integer[] integers) throws Exception {
+                return Observable.fromArray(integers);
+            }
+        }).subscribe(new Consumer<Integer>() {
+            @Override
+            public void accept(Integer integer) throws Exception {
+
+            }
+        });
+        //
+        Observable.just(new Integer[]{1,2,3,3},new Integer[]{4,5}).flatMap(new Function<Integer[], ObservableSource<Integer>>() {
+            @Override
+            public Observable<Integer> apply(Integer[] integers) throws Exception {
+                return  Observable.fromArray(integers).distinct();
+            }
+        }).subscribe(new Consumer<Integer>() {
+            @Override
+            public void accept(Integer integer) throws Exception {
+                System.out.println(""+integer);
+            }
+        });
+
+        //组合操作符
+        //mergeWith 合并多个Observable发射的数据，可能会让Observable发射的数据交错。
+        Integer[] integer=new Integer[]{5,6,7,8,9};
+        Observable.just(1,2,3,4).mergeWith(Observable.fromArray(integer)).subscribe(new Consumer<Integer>() {
+            @Override
+            public void accept(Integer integer) throws Exception {
+                System.out.print(integer+"");
+            }
+        });
+        //
      }
 }
