@@ -8,9 +8,8 @@ import java.util.List;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
-import io.reactivex.Observer;
-import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
 import io.reactivex.functions.Predicate;
 
 public class simple2 {
@@ -81,7 +80,22 @@ public class simple2 {
         Observable.just(1,2,3,4,4,5).distinct().subscribe(new Consumer<Integer>() {
             @Override
             public void accept(Integer integer) throws Exception {
-                System.out.println(integer+"");
+                System.out.print(integer+"");
+            }
+        });
+
+        //转换型操作符
+        //map
+        Observable.range(0,5).map(new Function<Integer, String>() {
+            @Override
+            public String apply(Integer integer) throws Exception {
+
+                return integer+"";
+            }
+        }).subscribe(new Consumer<String>() {
+            @Override
+            public void accept(String s) throws Exception {
+                System.out.print(s);
             }
         });
      }
