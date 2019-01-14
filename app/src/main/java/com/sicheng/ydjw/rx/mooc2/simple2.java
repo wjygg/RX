@@ -14,6 +14,9 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.functions.Predicate;
 
+/**
+ * rxjava2 操作符
+ */
 public class simple2 {
 
     public static void main(String args[]) {
@@ -55,6 +58,8 @@ public class simple2 {
                 System.out.println(String);
             }
         });
+
+       // range(1,5) 从1开始 发送5个数
 
         //过滤型操作符
        // filter：
