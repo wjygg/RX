@@ -21,7 +21,7 @@ public class simple1 extends AppCompatActivity {
 
         Flowable.create(new FlowableOnSubscribe<Integer>() {
                     @Override
-                    public void subscribe(FlowableEmitter<Integer> e) throws Exception {
+                    public void subscribe(FlowableEmitter<Integer>e ) throws Exception {
                         int i = 0;
                         while (true) {
                             //e.requested() 代表缓存池中可放入的数量 0的话缓存池中不能放入数据丢失超出根据缓存策略处理
